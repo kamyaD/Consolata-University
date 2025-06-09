@@ -1,0 +1,153 @@
+<header id="header" class="header sticky-top bg-white shadow-sm">
+    <div class="container-fluid d-flex align-items-center justify-content-between px-3 ml-20">
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto">
+        <img src="{% static 'img/new_logo.png' %}" alt="Logo" style="height: 200px; width: auto;"/>
+        <h2 class="sitename ms-2">Consolata International <center>University</center></h2>
+      </a>
+      
+
+      <nav id="navmenu" class="navmenu" >
+        
+        <ul>
+          {% if user.is_authenticated and request.user.role == "Student" %}
+          <li><a href="{% url 'profile' %}">Profile</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Results</a></li>
+          <li><a href="#">Fee Payment</a></li>
+          {% elif user.is_authenticated and request.user.role == "Lecturer" %}
+          <li><a href="{% url 'profile' %}">Profile</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Results</a></li>
+          <li><a href="#">Payslip</a></li>
+          {% else %}
+          
+           <!-- ABOUT TU Dropdown -->
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">
+              ABOUT TU
+            </a>
+            <ul class="dropdown-menu">
+              <!-- Submenu: About Tangaza -->
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">About Tangaza University</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Mission, Vision & Philosophy</a></li>
+                  <li><a class="dropdown-item" href="#">History</a></li>
+                  <li><a class="dropdown-item" href="#">Partners</a></li>
+                  <li><a class="dropdown-item" href="#">Virtual Tour</a></li>
+                  <li><a class="dropdown-item" href="#">Vacancies</a></li>
+                  <li><a class="dropdown-item" href="#">Tenders</a></li>
+                </ul>
+              </li>
+
+              <!-- Submenu: Governance -->
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">Governance</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Board of Trustees</a></li>
+                  <li><a class="dropdown-item" href="#">University Council</a></li>
+                  <li><a class="dropdown-item" href="#">Chancellor</a></li>
+                  <li><a class="dropdown-item" href="#">Vice Chancellor</a></li>
+                  <li><a class="dropdown-item" href="#">Management Board</a></li>
+                  <li><a class="dropdown-item" href="#">Faculty</a></li>
+                </ul>
+              </li>
+
+              <!-- Submenu: Departments -->
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">Departments</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Leaders Guild</a></li>
+                  <li><a class="dropdown-item" href="#">Alumni</a></li>
+                  <li><a class="dropdown-item" href="#">HR</a></li>
+                  <li><a class="dropdown-item" href="#">ICT</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <!-- ACADEMICS Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="academicsDropdown" role="button" data-bs-toggle="dropdown">
+              ACADEMICS
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">Programmes</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Postgraduate</a></li>
+                  <li><a class="dropdown-item" href="#">Undergraduate</a></li>
+                  <li><a class="dropdown-item" href="#">Diploma</a></li>
+                  <li><a class="dropdown-item" href="#">Certificate</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">Schools</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Theology</a></li>
+                  <li><a class="dropdown-item" href="#">Arts & Social Sciences</a></li>
+                  <li><a class="dropdown-item" href="#">Education</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">Institutes</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">IOP</a></li>
+                  <li><a class="dropdown-item" href="#">IYS</a></li>
+                  <li><a class="dropdown-item" href="#">CLM</a></li>
+                  <li><a class="dropdown-item" href="#">ISC</a></li>
+                  <li><a class="dropdown-item" href="#">IST</a></li>
+                  <li><a class="dropdown-item" href="#">TEFLAP</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="#">RESEARCH</a></li>
+
+          <!-- CICE -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="ciceDropdown" data-bs-toggle="dropdown">
+              CICE
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Chaplaincy</a></li>
+              <li><a class="dropdown-item" href="#">Service Learning</a></li>
+              <li><a class="dropdown-item" href="#">Inclusion Office</a></li>
+              <li><a class="dropdown-item" href="#">Safeguarding</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="#">CONTACT</a></li>
+
+          <!-- LOGIN & REGISTER -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown">
+              LOGIN & REGISTER
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Student Portal</a></li>
+              <li><a class="dropdown-item" href="#">Staff Portal</a></li>
+              <li><a class="dropdown-item" href="#">Online Application</a></li>
+              <li><a class="dropdown-item" href="#">Moodle LMS</a></li>
+              <li><a class="dropdown-item" href="#">Library</a></li>
+            </ul>
+          </li>
+          {% endif %}
+       
+          
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      {% if user.is_authenticated %}
+        <a class="btn-getstarted" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <!-- <a class="btn-getstarted" href="{% url 'login' %}">Login</a>
+        <a class="btn-getstarted" href="{% url 'register' %}">Register</a> -->
+      {% endif %}
+
+
+    </div>
+  </header>

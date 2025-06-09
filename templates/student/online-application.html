@@ -1,0 +1,760 @@
+{% extends 'home/base2.html' %}
+{% load static %}
+
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .step-wizard {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .step-wizard::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: #dee2e6;
+      z-index: 0;
+    }
+
+    .step {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: 33%;
+    }
+
+    .circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #dee2e6;
+      margin: 0 auto;
+      line-height: 30px;
+      color: #000;
+    }
+
+    .step.active .circle {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    .step.completed .circle {
+      background-color: #198754;
+      color: white;
+    }
+
+    .label {
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .step-content {
+      display: none;
+    }
+
+    .step-content.active {
+      display: block;
+    }
+  </style>
+{% endblock %}
+
+{% block objectives %}active{% endblock %}
+
+{% block content %}
+  
+  <div class="container">
+    <h2 class="mb-4">Online Application</h2>
+
+    <!-- Step Wizard -->
+    <div class="step-wizard mb-4">
+      <div class="step active" id="step-header-1">
+        <div class="circle">1</div>
+        <div class="label">Bio</div>
+      </div>
+      <div class="step" id="step-header-2">
+        <div class="circle">2</div>
+        <div class="label">Contacts</div>
+      </div>
+      <div class="step" id="step-header-3">
+        <div class="circle">3</div>
+        <div class="label">Program</div>
+      </div>
+      <div class="step" id="step-header-4">
+        <div class="circle">4</div>
+        <div class="label">Education</div>
+      </div>
+      <div class="step" id="step-header-5">
+        <div class="circle">5</div>
+        <div class="label">Recommendations</div>
+      </div>
+      <div class="step" id="step-header-6">
+        <div class="circle">6</div>
+        <div class="label">Extras</div>
+      </div>
+      <div class="step" id="step-header-7">
+        <div class="circle">7</div>
+        <div class="label">Submit</div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+    <form id="multiStepForm">
+      <div class="step-content active" id="step-1">
+        <div class="row">
+            <h5><strong>Personal Information</strong></h5>
+            <div class="col-md-4 step-content active" id="step-1">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Sir Name:</label>
+                <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="sir-name" name="sir-name" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">First Name:</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="first-name" name="first-name">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group row">
+                  <label for="ticketFunction" class="">Other Names:</label>
+                  <div class="col-sm-8  py-2">
+                    <input type="text" class="form-control" id="other-names" name="other-names">
+                  </div>
+                </div>
+              </div>
+
+          </div>
+          <div class="row">
+            <div class="col-sm-4 col-form-label" id="step-1">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Gender:</label>
+                <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+                <div class="col-sm-8  py-2">
+                    <select name="gender" id="gender" class="form-control" required>
+                        {% for choice in form.gender.field.choices %}
+                          <option value="{{ choice.0 }}" {% if choice.0 == form.gender.value %}selected{% endif %}>
+                            {{ choice.1 }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Date Of Birth:</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="birth-date" name="birth-date">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group row">
+                  <label for="ticketFunction" class="">Town/Place Of Birth:</label>
+                  <div class="col-sm-8  py-2">
+                    <input type="text" class="form-control" id="place-of-birth" name="place-of-birth">
+                  </div>
+                </div>
+              </div>
+
+          </div>
+          <div class="row">
+            <div class="col-sm-4 col-form-label" id="step-1">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Marital Status:</label>
+                <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+                <div class="col-sm-8  py-2">
+                  <select name="gender" id="gender" class="form-control" required>
+                    {% for choice in form.marital_status.field.choices %}
+                      <option value="{{ choice.0 }}" {% if choice.0 == form.marital_status.value %}selected{% endif %}>
+                        {{ choice.1 }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Diocese:</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="diocese" name="diocese">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group row">
+                  <label for="ticketFunction" class="">Congregation:</label>
+                  <div class="col-sm-8  py-2">
+                    <input type="text" class="form-control" id="congregation" name="congregation">
+                  </div>
+                </div>
+              </div>
+
+          </div>
+         
+          <hr>
+          <!-- <div class="step-content active" id="step-1"> -->
+            
+        <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
+      </div>
+
+      <div class="step-content" id="step-2">
+        <div class="row mt-5">
+            <h5><strong>Contact Information</strong></h5>
+            <div class="col-md-4 step-content active" id="step-1">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Permanent Adress:</label>
+                <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="permanent-address" name="permanent-address" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Email Address:</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="email" name="email">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group row">
+                  <label for="ticketFunction" class="">Phone Number:</label>
+                  <div class="col-sm-8  py-2">
+                    <input type="text" class="form-control" id="phone" name="phone">
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 col-form-label" id="step-1">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">Next Of Kin:</label>
+              <div class="col-sm-8  py-2">
+                <input type="text" class="form-control" id="next-of-kin" name="next-of-kin">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">Next Of Kin Address:</label>
+              <div class="col-sm-8  py-2">
+                <input type="text" class="form-control" id="next-of-kin-address" name="next-of-kin-address">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Next Of Kin Email Address:</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="next-of-kin-email" name="next-of-kin-email">
+                </div>
+              </div>
+            </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">Next Of Kin Phone Number:</label>
+              <div class="col-sm-8  py-2">
+                <input type="text" class="form-control" id="next-of-kin-phone" name="next-of-kin-phone">
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+        
+        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
+      </div>
+      <div class="step-content" id="step-3">
+        <div class="row mt-5">
+          <h5 class="mb-3"><strong>Program Details</strong></h5>
+          <div class="col-md-4 step-content active" id="step-1">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">Registration/Student Status:</label>
+              <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+              <div class="col-sm-8  py-2">
+                <select name="registration_status" id="registration_status" class="form-control" required>
+                  {% for choice in form.registration_status.field.choices %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == form.registration_status.value %}selected{% endif %}>
+                      {{ choice.1 }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">School:</label>
+              <div class="col-sm-8  py-2">
+                <select name="school" id="school" class="form-control" required>
+                  {% for choice in form.school.field.choices %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == form.school.value %}selected{% endif %}>
+                      {{ choice.1 }}
+                    </option>
+                  {% endfor %}
+                </select> 
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">School Of Philosophy:</label>
+                <div class="col-sm-8  py-2">
+                  <select name="philosophy-school" id="philosophy-school" class="form-control" required>
+                    {% for choice in form.school_of_philosophy.field.choices %}
+                      <option value="{{ choice.0 }}" {% if choice.0 == form.school_of_philosophy.value %}selected{% endif %}>
+                        {{ choice.1 }}
+                      </option>
+                    {% endfor %}
+                  </select> 
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 col-form-label">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">School Of Theology:</label>
+            <div class="col-sm-8  py-2">
+              <select name="theology-school" id="theology-school" class="form-control" required>
+                {% for choice in form.school_of_theology.field.choices %}
+                  <option value="{{ choice.0 }}" {% if choice.0 == form.school_of_theology.value %}selected{% endif %}>
+                    {{ choice.1 }}
+                  </option>
+                {% endfor %}
+              </select> 
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">School Of Counselling Psychology:</label>
+            <div class="col-sm-8  py-2">
+              <select name="counselling-school" id="counselling-school" class="form-control" required>
+                {% for choice in form.school_of_counselling.field.choices %}
+                  <option value="{{ choice.0 }}" {% if choice.0 == form.school_of_counselling.value %}selected{% endif %}>
+                    {{ choice.1 }}
+                  </option>
+                {% endfor %}
+              </select> 
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">Anticipated Program Duration:</label>
+              <div class="col-sm-8  py-2">
+                <select name="program-duration" id="program-duration" class="form-control" required>
+                  {% for choice in form.anticipated_program_duration.field.choices %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == form.anticipated_program_duration.value %}selected{% endif %}>
+                      {{ choice.1 }}
+                    </option>
+                  {% endfor %}
+                </select> 
+              </div>
+            </div>
+          </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-4 col-form-label" id="step-1">
+          
+        </div>
+        
+
+      </div>
+        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+      </div>
+      <div class="step-content" id="step-4">
+        <div class="row">
+          <h5 class="mb-3"><strong>Experience With Consolata University</strong></h5>
+          <div class="col-sm-12 col-form-label">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">Have you ever studied at the Consolata International University (CIU)/Consolata Institute of Philosophy Before?:</label>
+              <div class="col-sm-8  py-2">
+                <select name="theology-school" id="theology-school" class="form-control" required>
+                  {% for choice in form.ever_studied_at_ciu.field.choices %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == form.ever_studied_at_ciu.value %}selected{% endif %}>
+                      {{ choice.1 }}
+                    </option>
+                  {% endfor %}
+                </select> 
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">If yes, Indicate your previous student ID number:</label>
+              <div class="col-sm-8  py-2">
+                <input type="text" class="form-control" id="previous-stud-id" name="previous-stud-id">
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-12">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">In which School of the Consolata International University (CIU) did you study before?</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="previous-ciu-school" name="previous-ciu-school">
+                </div>
+              </div>
+            </div>
+  
+        </div>
+        <!-- </div> -->
+        <div class="row">
+          <!-- <div class="col-md-12"> -->
+
+          <div class="col-sm-6 col-form-label">
+            <label for="ticketFunction" class="">Year Of Enrolment(FROM):</label>
+                <div class="col-sm-6  py-2">
+                  <input type="date" class="form-control" id="from" name="from">
+                </div>
+            
+          </div>
+          <div class="col-sm-6 col-form-label" id="step-1">
+            <label for="ticketFunction" class="">Year Of Enrolment(To):</label>
+                <div class="col-sm-6  py-2">
+                  <input type="date" class="form-control" id="to" name="to">
+                </div>
+            
+          </div>
+          
+  
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">University/Colleges Attended(List and attach supporting academic documents):</label>
+              <div class="col-sm-8  py-2">
+                <input type="text" class="form-control" id="colleges-attended" name="colleges-attended">
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">High School/Secondary School Attended(List and attach supporting academic documents):</label>
+              <div class="col-sm-8  py-2">
+                <input type="text" class="form-control" id="high-school-attended" name="high-school-attended">
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+
+        </div>
+        <button type="button" class="btn btn-secondary" onclick="prevStep(4)">Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
+      </div>
+      <div class="step-content" id="step-5">
+        <div class="row">
+          <h5><strong>Recommendation Details</strong></h5>
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label for="ticketFunction" class="">Name Of Recommending Authority:</label>
+              <div class="col-sm-8  py-2">
+                <input type="text" class="form-control" id="recommending-authority" name="recommending-authority">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Congregation/Diocese/Organization (Recommendation and Sponsorship):</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="recommending-congregation" name="recommending-congregation">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Address:</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="sponsorship-address" name="sponsorship-address">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Telephone Number:</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="sponsorship-phone" name="sponsorship-phone">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Email:</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="other-names" name="other-names">
+                </div>
+              </div>
+            </div>
+            
+
+        </div>
+        <button type="button" class="btn btn-secondary" onclick="prevStep(5)">Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep(5)">Next</button>
+      </div>
+      <div class="step-content" id="step-6">
+        <h5><strong>Sponsorship</strong></h5>
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Indicate how the fee will be paid :</label>
+            <div class="col-sm-8  py-2">
+              <input type="text" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Name of Sponsor :</label>
+            <div class="col-sm-8  py-2">
+              <input type="text" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Recommendation and Sponsorship:</label>
+            <div class="col-sm-8  py-2">
+              <select name="recomendation" id="recomendation" class="form-control" required>
+                {% for choice in form.recomendation_type.field.choices %}
+                  <option value="{{ choice.0 }}" {% if choice.0 == form.recomendation_type.value %}selected{% endif %}>
+                    {{ choice.1 }}
+                  </option>
+                {% endfor %}
+              </select> 
+            </div>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Address:</label>
+            <div class="col-sm-8  py-2">
+              <input type="text" class="form-control" id="recomendation-address" name="recomendation-address">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Phone:</label>
+            <div class="col-sm-8  py-2">
+              <input type="text" class="form-control" id="recomendation-address" name="recomendation-address">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Email:</label>
+            <div class="col-sm-8  py-2">
+              <input type="text" class="form-control" id="recomendation-address" name="recomendation-address">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Indicate the sponsoring community, province or house if the Congregation has more than one community or province
+              sponsoring the students in the Consolata International University (CIU). Otherwise, leave it blank. :</label>
+            <div class="col-sm-8  py-2">
+              <input type="text" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">How did you come to know about the Consolata International University (CIU)? :</label>
+            <div class="col-sm-8  py-2">
+              <input type="text" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Do you have any form of disability?:</label>
+            <div class="col-sm-8  py-2">
+              <select name="program-duration" id="program-duration" class="form-control" required>
+                {% for choice in form.disability.field.choices %}
+                  <option value="{{ choice.0 }}" {% if choice.0 == form.disability.value %}selected{% endif %}>
+                    {{ choice.1 }}
+                  </option>
+                {% endfor %}
+              </select> 
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">If yes, What is the nature of your disability?:</label>
+            <div class="col-sm-8  py-2">
+              <input type="text" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <h5>Consent:</h5>
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">I attest that the information provided on this form is true, correct and accurate:</label>
+            <div class="col-sm-8  py-2">
+              <select name="program-duration" id="program-duration" class="form-control" required>
+                {% for choice in form.disability.field.choices %}
+                  <option value="{{ choice.0 }}" {% if choice.0 == form.disability.value %}selected{% endif %}>
+                    {{ choice.1 }}
+                  </option>
+                {% endfor %}
+              </select> 
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+        <button type="button" class="btn btn-secondary" onclick="prevStep(6)">Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep(6)">Next</button>
+      </div>
+      
+      <div class="step-content" id="step-7">
+        <h5>Attachments:</h5>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">A non-refundable Application Fee receipt:</label>
+            <div class="col-sm-8  py-2">
+              <input type="file" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Copy of your ID/Passport:</label>
+            <div class="col-sm-8  py-2">
+              <input type="file" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Two (2) passport sized photos:</label>
+            <div class="col-sm-8  py-2">
+              <input type="file" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Copies of all your degrees:</label>
+            <div class="col-sm-8  py-2">
+              <input type="file" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Copies of all transcripts:</label>
+            <div class="col-sm-8  py-2">
+              <input type="file" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Copies of all relevant Professional Qualifications:</label>
+            <div class="col-sm-8  py-2">
+              <input type="file" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="form-group row">
+            <label for="ticketFunction" class="">Copies of relevant Higher Diplomas, Diplomas and certificates:</label>
+            <div class="col-sm-8  py-2">
+              <input type="file" class="form-control" id="other-names" name="other-names">
+            </div>
+          </div>
+        </div>
+        
+        <button type="button" class="btn btn-secondary" onclick="prevStep(7)">Back</button>
+        
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </form>
+  </div>
+  {% endblock %}
+
+  {% block extrajs %}
+  <!-- Script must be at the bottom -->
+  <script>
+    function nextStep(current) {
+      const currentStep = document.getElementById(`step-${current}`);
+      const nextStep = document.getElementById(`step-${current + 1}`);
+
+      const currentHeader = document.getElementById(`step-header-${current}`);
+      const nextHeader = document.getElementById(`step-header-${current + 1}`);
+
+      currentStep.classList.remove("active");
+      currentHeader.classList.remove("active");
+      currentHeader.classList.add("completed");
+
+      nextStep.classList.add("active");
+      nextHeader.classList.add("active");
+    }
+
+    function prevStep(current) {
+      const currentStep = document.getElementById(`step-${current}`);
+      const prevStep = document.getElementById(`step-${current - 1}`);
+
+      const currentHeader = document.getElementById(`step-header-${current}`);
+      const prevHeader = document.getElementById(`step-header-${current - 1}`);
+
+      currentStep.classList.remove("active");
+      currentHeader.classList.remove("active");
+
+      prevStep.classList.add("active");
+      prevHeader.classList.add("active");
+    }
+  </script>
+
+
+{% endblock %}

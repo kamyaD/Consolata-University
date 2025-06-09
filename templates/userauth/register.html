@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Consolata</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <!-- <link href="{% static 'img/favicon.ico' %}" rel="icon"> -->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.g{% static.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/simple-datatables/style.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+  {% if messages %}
+  <div class="message-dialog" id="msg">
+    {% for message in messages %}
+      <div class="notification {{ message.tags }}">
+        <span class="icon"></span>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <main>
+    <div class="container">
+       
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <div class="d-flex justify-content-center py-2">
+                <a href="#" class="logo d-flex align-items-center w-auto">
+                  <!-- <img src="{% static 'img/new_logo.png' %}"  alt="" style="width: 200px; height: 100px;"> -->
+                </a>
+              </div><!-- End Logo -->
+              <div class="card mb-3">
+
+                <div class="card-body">
+                    <div class="d-flex justify-content-center py-2">
+                      <a href="{% url 'home' %}">
+                        <img src="{% static 'img/new_logo.png' %}"  alt="" style="width: 200px; height: auto">
+                      </a>
+                    </div>
+
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Register</h5>
+                    <p class="text-center small">Enter the following details to create an account</p>
+                  </div>
+
+                  <form class="row g-3 needs-validation" method="post" action="{% url 'register' %}" novalidate>
+                    {% csrf_token %}
+                    
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    <div class="col-12">
+                      <label for="yourUsername" class="form-label">First Name</label>
+                      <div class="input-group has-validation">
+                        <!-- <span class="input-group-text" id="inputGroupPrepend"></span> -->
+                        <input type="text" name="first_name" class="form-control" id="yourUsername" value="{{ form.first_name.value|default_if_none:'' }}" required>
+                        
+                      </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="yourUsername" class="form-label">Last Name</label>
+                        <div class="input-group has-validation">
+                          <!-- <span class="input-group-text" id="inputGroupPrepend"></span> -->
+                          <input type="text" name="last_name" class="form-control" id="yourLast" value="{{ form.last_name.value|default_if_none:'' }}" required>
+                          
+                        </div>
+                      </div>
+                    <div class="col-12">
+                        <label for="yourUsername" class="form-label">Email:</label>
+                        <div class="input-group has-validation">
+                          <span class="input-group-text" id="inputGroupPrepend">@</span>
+                          <input type="text" name="email" class="form-control" id="email" value="{{ form.email.value|default_if_none:'' }}" required>
+                          <div class="invalid-feedback">please enter a valid email!</div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="id_role" class="form-label">Role:</label>
+                        <div class="input-group has-validation">
+                          <select name="role" id="id_role" class="form-control">
+                            {% for choice in form.role.field.choices %}
+                              <option value="{{ choice.0 }}" {% if choice.0 == form.role.value %}selected{% endif %}>{{ choice.1 }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                      
+                    
+                    
+                    <div class="col-12">
+                        <label for="id_department" class="form-label">School:</label>
+                        <div class="input-group has-validation">
+                            <select name="department" id="department" class="form-control">
+                              {% for choice in form.school.field.choices %}
+                                <option value="{{ choice.0 }}" {% if choice.0 == form.department.value %}selected{% endif %}>
+                                  {{ choice.1 }}
+                                </option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                          
+                    </div>                          
+                    
+
+                    <div class="col-12">
+                      <label for="yourPassword" class="form-label">Password</label>
+                      <input type="password" name="password1" class="form-control" id="yourPassword" value="{{ form.password1.value|default_if_none:'' }}" required>
+                      <div class="invalid-feedback">password is required!</div>
+                    </div>
+                    <div class="col-12">
+                        <label for="yourPassword" class="form-label">Confirm Password</label>
+                        <input type="password" name="password2" class="form-control" value="{{ form.password2.value|default_if_none:'' }}" id="yourPassword" required>
+                        <div class="invalid-feedback">password is required!</div>
+                      </div>
+
+                    <div class="col-12">
+                      <!-- <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                      </div> -->
+                    </div>
+                    <div class="col-12">
+                       <input type="hidden" name="next" value="{{ next }}">
+                      <button class="btn btn-primary w-100" type="submit">Sign up</button>
+                      <br><br>
+                      <!-- <center><a href="">Forgot Password?</a></center> -->
+                    </div>                                                  
+                  </form>
+                  <!-- <div class="col-12 d-flex justify-content-center align-items-center mt-3">
+                    <a href="#" class="text-muted">
+                      <button class="btn btn-outline-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                          <path d="M14.588 6.679H8.671v2.641h3.771c-.288 1.556-1.705 4.317-4.548 4.317-2.738 0-4.976-2.184-4.976-4.882 0-2.7 2.238-4.883 4.976-4.883.79 0 1.548.22 2.206.645l1.759-1.693C11.314.565 9.877 0 8.25 0 4.37 0 1 3.242 1 7.317s3.37 7.317 7.25 7.317c4.16 0 6.383-2.894 6.383-6.615 0-.441-.041-.79-.094-1.123z"/>
+                        </svg> Sign in with Google
+                      </button>
+                    </a>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'vendor/tinymce/tinymce.min.js' %}"></script>
+ 
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,468 @@
+{% extends 'home/base2.html' %}
+{% load static %}
+{% block profile %}active{% endblock %}
+
+{%block extracss%}{% endblock %}
+
+{% block content %}
+<div class="card card-body py-3">
+    <div class="text-center">
+      <h4 class="mb-2 card-title">ADMINISTRATOR/ACCOUNTANT DASHBOARD</h4>
+      <p class="mb-0">(GENERATION OF INVOICES/VOUCHERS/RECEIPTS)</p>
+    </div>
+  </div>
+  
+
+<div class="card overflow-hidden">
+     <div class="card-body p-0">
+       <!-- <img src="{% static 'img/nature.jpg'%}" alt="matdash-img" class="img-fluid" style="height: 350px; width:100%;"> -->
+       <div class="row align-items-center">
+         <div class="col-lg-4 order-lg-1 order-2">
+           
+         </div>
+         <div class="col-lg-4 mt-n3 order-lg-2 order-1">
+           <div class="mt-n5">
+             <div class="d-flex align-items-center justify-content-center mb-2">
+               <div class="d-flex align-items-center justify-content-center round-110">
+                 <div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden round-100">
+                 	<!-- {% if employee.gender == 'female' %}
+                 		<img src="{% static 'assets/images/profile/user-2.jpg' %}" alt="matdash-img" class="w-100 h-100">
+                 	{% else %}
+                 		<img src="{% static 'assets/images/profile/user-1.jpg' %}" alt="matdash-img" class="w-100 h-100">
+                 	{% endif %} -->
+                 </div>
+               </div>
+             </div>
+             <div class="text-center">
+               <h5 class="mb-0">{{request.user.full_name}}</h5>
+               <p class="mb-0">{{request.user.department_id.name}}</p>
+               <p class="mb-0">
+                 <span class="badge bg-primary">{{employee.job}}</span>
+                 <span class="badge bg-secondary">{{employee.role}}</span>
+               </p>
+               <p class="mb-0">
+                 <span class="badge bg-info">{{request.user.company_name}}</span>
+               </p>
+             </div>
+           </div>
+         </div>
+         <div class="col-lg-4 order-last">
+           <ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-end my-3 mx-4 pe-4 gap-3">
+             <li>
+               <!-- <a href="" type="button" class="btn btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</a> -->
+             </li>
+           </ul>
+         </div>
+       </div>
+       <ul class="nav nav-pills user-profile-tab justify-content-center mt-2 bg-primary-subtle rounded-2 rounded-top-0" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active hstack gap-2 rounded-0 fs-12 py-6" id="pills-school-invoice-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true">
+                <!-- <i class="ti ti-user-circle fs-5"></i> -->
+               	<span class="d-none d-md-block">School Invoices</span>
+               </button>
+           	</li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link hstack gap-2 rounded-0 fs-12 py-6" id="pills-followers-tab" data-bs-toggle="pill" data-bs-target="#pills-followers" type="button" role="tab" aria-controls="pills-followers" aria-selected="false">
+                <!-- <i class="ti ti-heart fs-5"></i> -->
+                <span class="d-none d-md-block">Client Service Provision Invoices</span>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link hstack gap-2 rounded-0 fs-12 py-6" id="pills-gallery-tab" data-bs-toggle="pill" data-bs-target="#pills-gallery" type="button" role="tab" aria-controls="pills-gallery" aria-selected="false">
+                    <!-- <i class="ti ti-photo-plus fs-5"></i> -->
+                    <span class="d-none d-md-block">Teachers Salary Details</span>
+                </button>
+            </li>
+            
+       </ul>
+    </div>
+</div>
+ <div class="tab-content" id="pills-tabContent">
+   <div class="tab-pane fade show active" id="pills-school-invoice-tab" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="table-responsive">
+                        <table id="biannual_appraisals" class="table table-striped table-bordered display text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Name</th>
+                                    <th>Invoice Number</th>
+                                    <th>Language</th>
+                                    <th>Level</th>
+                                    <th>Month</th>
+                                    <th>Amount Paid</th>
+                                    <th>Balance</th>
+                                    <th>Update payment</th>
+                                    <th>Payment status</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for invoice in school_invoices %}
+                                <tr>
+                                    <td>{{invoice.id}}</td>
+                                    <td>{{invoice.first_name}}</td>
+                                    <td>{{invoice.month}}</td>
+                                    <td>{{invoice.course}}</td>
+                                    <td>{{invoice.level}}</td>
+                                    <td>{{invoice.gross_total}}</td>
+                                    <td>{{invoice.gross_total}}</td>
+                                    <td>{{invoice.gross_total}}</td>
+                                    <td>{{invoice.gross_total}}</td>
+                                    <td>{{invoice.gross_total}}</td>
+                                    <td>{{invoice.gross_total}}</td>
+                                    <td><button class="btn btn-outline-secondary"> View</button></td>
+                                    <td><button class="btn btn-outline-primary">{{teacher.approval_status}}</button></td>
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+   <div class="tab-pane fade" id="pills-followers" role="tabpanel" aria-labelledby="pills-followers-tab" tabindex="0">
+        <div class="row mt-0">
+		  <div class="col-12 col-md-6 mb-1">
+		    <div class="card">
+		      <div class="card-body">
+		        <h5 class="card-title">
+                    <i class="ti ti-user-circle me-2"></i>Employee Details
+                </h5>
+		        <p class="card-text"><span class="fw-bold">PIN Code:</span> &nbsp;{{employee.pin | default:'---'}}</p>
+		        <p class="card-text"><span class="fw-bold">Badge ID:</span>&nbsp;{{employee.barcode | default:'---'}}</p>
+		        <p class="card-text"><span class="fw-bold">Manager:</span> &nbsp;{{employee.manager | default:'---'}}</p>
+			    	<p class="card-text"><span class="fw-bold">Team Lead:</span>&nbsp;{{employee.team_lead | default:'---'}}</p>
+                    <p class="card-text"><span class="fw-bold">Employee Partner:</span>&nbsp;{{employee.employee_partner_name | default:'---'}}</p>
+		        <p class="card-text"><span class="fw-bold">First Contract Date:</span>&nbsp;{{employee.first_contract_date | default:'--'}}</p>
+		        <p class="card-text"><span class="fw-bold">Analytic Accounts:</span>&nbsp;{{request.user.analytics_account}}</p>
+		        <p class="card-text"><span class="fw-bold">Analytic Tags:</span>&nbsp;
+		        	{% for tag in request.user.analytics_accounts.all reversed %}
+			        	{% if tag.dimension == "dim_4" %}
+			        	<span class="mb-1 badge rounded-pill text-bg-dark">{{tag.display_name}}</span>
+			        	{% elif tag.dimension == "dim_3" %}
+			        	<span class="mb-1 badge rounded-pill text-bg-danger">{{tag.display_name}}</span>
+			        	{% else %}
+			        	<span class="mb-1 badge rounded-pill text-bg-warning">{{tag.display_name}}</span>
+			        	{% endif %}
+		        	{% endfor %}
+		      	</p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-12 col-md-6 mb-1">
+		    <div class="card">
+		      <div class="card-body">
+		        <h5 class="card-title">
+                    <i class="ti ti-cash me-2"></i>Payroll
+                </h5>
+		        <p class="card-text"><span class="fw-bold">PIN:</span>&nbsp;{{employee.kra | default:'--'}}</p>
+		        <p class="card-text"><span class="fw-bold">NHIF Number:</span>&nbsp;{{employee.nhif | default:'--'}}</p>
+		        <p class="card-text"><span class="fw-bold">NHIF Name:</span>&nbsp;{{employee.nhif_name | default:'--'}}</p>
+		        <p class="card-text"><span class="fw-bold">NSSF Number:</span>&nbsp;{{employee.nssf | default:'--'}}</p>
+		        <p class="card-text"><span class="fw-bold">NSSF Name:</span>&nbsp;{{employee.nssf_name | default:'--'}}</p>
+		        <p class="card-text"><span class="fw-bold">Employee has disability:</span>&nbsp;{{employee.disability | default:'--'}}</p>
+		        <p class="card-text"><span class="fw-bold">HELB Loan:</span>&nbsp;{{employee.helb | default:'--'}}</p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+   </div>
+   <div class="tab-pane fade" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab" tabindex="0">
+        <div class="row">
+		     <div class="col-sm-12">
+		         <div class="card shadow-none border">
+		             <div class="card-body">
+		                 <table id="example" class="table table-sm table-stripped table-responsive">
+		                     <thead>
+		                         <tr>
+		                             <th scope="col">Vaccine</th>
+		                             <th scope="col">Dose</th>
+		                             <th scope="col">Date</th>
+		                             <th scope="col">Vaccinated By</th>
+		                             <th scope="col">Vaccination Centre</th>
+		                             <th scope="col">Country of Vaccination</th>
+		                         </tr>
+		                     </thead>
+		                     <tbody>
+		                         {% for vaccine in vaccinations %}
+		                         <tr>
+		                             <td>{{vaccine.vaccine_id}}</td>
+		                             <td>{{vaccine.vaccine_dose}}</td>
+		                             <td>{{vaccine.dose_date}}</td>
+		                             <td>{{vaccine.vaccinated_by}}</td>
+		                             <td>{{vaccine.vaccination_centre_id|default:'--'}}</td>
+		                             <td>{{vaccine.vaccinated_country_id}}</td>
+		                         </tr>
+		                         {% endfor %}
+		                     </tbody>
+		                 </table>
+		             </div>
+		         </div>
+		     </div>
+		</div>
+   </div>
+   <div class="tab-pane fade" id="pills-dependants" role="tabpanel" aria-labelledby="pills-gallery-tab" tabindex="0">
+        <div class="row">
+		    <div class="col-12">
+		        <div class="card">
+		            <div class="card-body">
+		                <table id="example" class="table table-sm table-stripped table-responsive">
+		                    <thead>
+		                        <tr>
+		                            <th scope="col">Name</th>
+		                            <th scope="col">Mobile Phone</th>
+		                            <th scope="col">Kin</th>
+		                            <th scope="col">Gender</th>
+		                            <th scope="col">Relationship</th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                        {% for e in kin %}
+		                        <tr>
+		                            <td>{{e.name|default:'--'}}</td>
+		                            <td>{{e.phone|default:'--'}}</td>
+		                            <td>{{e.kin|default:'--'}}</td>
+		                            <td>{{e.gender|default:'--'}}</td>
+		                            <td>{{e.relation|default:'--'}}</td>
+		                        </tr>
+		                        {% empty %}
+		                        <tr>
+		                            <td class="text-center" colspan="7">No data available</td>
+		                        </tr>
+		                        {% endfor %}
+		                    </tbody>
+		                </table>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+   </div>
+   <div class="tab-pane fade" id="pills-gallery" role="tabpanel" aria-labelledby="pills-dependants-tab" tabindex="0">
+              <div class="row mt-1">
+		            <div class="col-sm-12">
+		                <div class="card">
+		                    <div class="card-body">
+		                        <table id="example" class="table table-sm table-stripped table-responsive">
+		                            <thead>
+		                                <tr>
+		                                    <th scope="col">Contact Name</th>
+		                                    <th scope="col">Mobile Phone</th>
+		                                    <th scope="col">Email</th>
+		                                    <th scope="col">Relationship</th>
+		                                    <th scope="col">Country</th>
+		                                    <th scope="col">Primary Contact</th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                {%for e in emergencies%}
+		                                <tr>
+		                                    <td>{{e.contact_name|default:'--'}}</td>
+		                                    <td>{{e.contact_phone|default:'--'}}</td>
+		                                    <td>{{e.contact_email|default:'--'}}</td>
+		                                    <td>{{e.relationship|default:'--'}}</td>
+		                                    <td>{{e.country_id|default:'--'}}</td>
+		                                    {% if e.primary_contact == True %}
+		                                    <td><input class="form-check-input" type="checkbox" checked></td>
+		                                    {% else %}
+		                                    <td><td><input class="form-check-input" type="checkbox" ></td></td>
+		                                    {% endif %}
+		                                </tr>
+		                                {% empty %}
+		                                <tr>
+		                                    <td class="text-center" colspan="7">No data available</td>
+		                                </tr>
+		                                {% endfor %}
+		                            </tbody>
+		                        </table>
+		                    </div>
+		                </div>
+
+		            </div>
+		        </div>
+   </div>
+   <div class="tab-pane fade" id="pills-courses" role="tabpanel" aria-labelledby="pills-courses-tab" tabindex="0">
+        <div class="row mt-1">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table id="example" class="table table-sm table-stripped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Course Name</th>
+                                    <th scope="col">Start date</th>
+                                    <th scope="col">End date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for c in courses %}
+                                <tr>
+                                    <td>{{c.name}}</td>
+                                    <td>{{c.start_date|default:'--'}}</td>
+                                    <td>{{c.end_date|default:'--'}}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td class="text-center" colspan="3">No data available</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+ </div>
+ <div class="modal fade mt-10" id="editProfileModal" data-backdrop="static" data-keyboard="false" style="width:100%">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="d-sm-flex align-items-center justify-space-between">
+              <h5 class="card-title">Edit Profile</h5>
+          </div>
+          <form method="post" id="submitForm" action="">
+            {% csrf_token %}
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Date Of Birth:</label>
+                      <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+                      <div class="col-sm-8  py-2">
+                        <input type="date" class="form-control" id="date-of-birth" name="date-of-birth">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Marital Status:</label>
+                      <div class="col-sm-8  py-2">
+                        <select name="role" id="id_role" class="form-control">
+                          {% for choice in form.marital_status.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == form.role.value %}selected{% endif %}>{{ choice.1 }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Adress:</label>
+                      <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+                      <div class="col-sm-8  py-2">
+                        <input type="text" class="form-control" id="adress" name="adress">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Personal Email:</label>
+                      <div class="col-sm-8  py-2">
+                        <select name="role" id="id_role" class="form-control">
+                          {% for choice in form.gender.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == form.role.value %}selected{% endif %}>{{ choice.1 }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Phone:</label>
+                      <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+                      <div class="col-sm-8  py-2">
+                        <input type="text" class="form-control" id="adress" name="adress">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Bank Account:</label>
+                      <div class="col-sm-8  py-2">
+                        <select name="role" id="id_role" class="form-control">
+                          {% for choice in form.gender.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == form.role.value %}selected{% endif %}>{{ choice.1 }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Residential Estate:</label>
+                      <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+                      <div class="col-sm-8  py-2">
+                        <input type="text" class="form-control" id="adress" name="adress">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Emergency Contact:</label>
+                      <div class="col-sm-8  py-2">
+                        <select name="role" id="id_role" class="form-control">
+                          {% for choice in form.gender.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == form.role.value %}selected{% endif %}>{{ choice.1 }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Emergency Phone:</label>
+                      <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
+                      <div class="col-sm-8  py-2">
+                        <input type="text" class="form-control" id="adress" name="adress">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="ticketFunction" class="col-sm-4 col-form-label">Emergency Contact:</label>
+                      <div class="col-sm-8  py-2">
+                        <select name="role" id="id_role" class="form-control">
+                          {% for choice in form.gender.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == form.role.value %}selected{% endif %}>{{ choice.1 }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <div class="submit-spinner" id="spinner"></div>
+                  <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+              </div>
+              </div>
+            </div>
+                                        
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+        
+            
+{% endblock %} 
