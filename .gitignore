@@ -17,4 +17,5 @@ venv/
 foo.py
 media_files/
 *.DS_Store
-
+static/*
+media/*
