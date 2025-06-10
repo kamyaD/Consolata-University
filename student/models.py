@@ -162,7 +162,7 @@ RECOMMENDATION_CHOICES = [
 ]
 
 
-class TblStudentsAdmission(models.Model):
+class TblStudentsAdmissions(models.Model):
     studentid = models.AutoField(db_column='studentID', primary_key=True)  # Field name made lowercase.
     first_name = models.CharField(max_length=100, null=True, blank=True)
     last_name = models.CharField(max_length=100, null=True, blank=True)
@@ -224,5 +224,7 @@ class TblStudentsAdmission(models.Model):
     disability = models.CharField(max_length=254, choices=YES_NO_CHOICES, null=True, blank=True)
     
     class Meta:
-        managed = False
-        db_table = 'tbl_students_admission'
+        managed = True
+        db_table = 'tbl_students_admissions'
+        
+   

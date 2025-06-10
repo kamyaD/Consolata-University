@@ -24,6 +24,7 @@ urlpatterns = [
     path('auth/', include('userauth.urls')),
     path('student/', include('userauth.urls')),
     path('staff/', include('staff_teachers.urls')),
+    path('student/', include('student.urls')),
     path('consolata/', include('consolata_admin.urls')),
     path('', include('home.urls')),
 ]

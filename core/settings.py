@@ -132,7 +132,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'userauth.CustomUser'
-AUTHENTICATION_BACKENDS = ['userauth.backends.EmailBackend']
+AUTHENTICATION_BACKENDS = ['userauth.backends.EmailBackend',
+                            'django.contrib.auth.backends.ModelBackend',]
 # For testing: Emails print to console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
