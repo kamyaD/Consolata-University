@@ -8,6 +8,7 @@
 from django.db import models
 
 
+
 class FileUpload(models.Model):
     file_name = models.CharField(max_length=100)
 
@@ -825,68 +826,6 @@ class TblStudents(models.Model):
         managed = False
         db_table = 'tbl_students'
 
-
-class TblStudentsAdmission(models.Model):
-    studentid = models.AutoField(db_column='studentID', primary_key=True)  # Field name made lowercase.
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    image = models.CharField(max_length=150)
-    nationality = models.CharField(max_length=20)
-    date_of_birth = models.DateField()
-    id_passport = models.CharField(max_length=50)
-    contact = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    occupation = models.CharField(max_length=50)
-    address = models.CharField(max_length=50)
-    admission_year = models.CharField(max_length=20)
-    month = models.CharField(max_length=20)
-    billing_self = models.CharField(max_length=100)
-    organization = models.CharField(max_length=100)
-    responsible = models.CharField(max_length=100)
-    telephone = models.CharField(max_length=100)
-    language_spoken = models.CharField(max_length=100)
-    language_to_learn = models.CharField(max_length=100)
-    course_type = models.CharField(max_length=100)
-    duration = models.CharField(max_length=20)
-    start_date = models.DateField()
-    other_courses = models.CharField(max_length=100)
-    registration_number = models.IntegerField()
-    modality = models.CharField(max_length=100)
-    mail_status = models.CharField(max_length=20)
-
-    class Meta:
-        managed = False
-        db_table = 'tbl_students_admission'
-
-
-class TblStudentsAdmissions(models.Model):
-    studentid = models.AutoField(db_column='studentID', primary_key=True)  # Field name made lowercase.
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    image = models.CharField(max_length=150)
-    nationality = models.CharField(max_length=100)
-    date_of_birth = models.DateField()
-    id_passport = models.IntegerField()
-    contact = models.CharField(max_length=100)
-    email = models.CharField(max_length=50)
-    occupation = models.CharField(max_length=50)
-    address = models.CharField(max_length=11)
-    admission_year = models.CharField(max_length=20)
-    month = models.CharField(max_length=20)
-    billing_self = models.CharField(max_length=100)
-    billing_organization_name = models.CharField(max_length=100)
-    name_of_responsible = models.CharField(max_length=100)
-    telephone = models.CharField(max_length=100)
-    language_spoken = models.CharField(max_length=100)
-    language_to_learn = models.CharField(max_length=100)
-    course_type = models.CharField(max_length=100)
-    duration = models.CharField(max_length=100)
-    start_date = models.DateField()
-    other_courses = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'tbl_students_admissions'
 
 
 class TblSubscription(models.Model):

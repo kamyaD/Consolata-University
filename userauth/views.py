@@ -18,13 +18,16 @@ def login_view(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('profile')  # Replace with actual home page
+        if user is not None and user.is_active:
+            login(request, user)
+            next_url = request.POST.get('next')
+            return redirect(next_url or 'student:online-application')  
         else:
-            return render(request, 'userauth/login.html', {'error': 'Invalid credentials'})
-    return render(request, 'userauth/login.html')
+             return render(request, 'userauth/login.html', {'error': 'Invalid credentials'})
+    
+    next_url = request.GET.get('next', '')
+    return render(request, 'userauth/login.html', {'next': next_url})
+
 
 def logout_view(request):
     logout(request)

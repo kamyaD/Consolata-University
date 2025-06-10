@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from student.models import TblStudentsAdmission
+from student.models import TblStudentsAdmissions
 from .forms import StudentCreationForm
 from django.core.mail import send_mass_mail
 
@@ -11,7 +11,7 @@ from django.core.mail import send_mass_mail
 @login_required
 def view_admin_panel(request):
     template = 'admin/admin_panel.html'
-    students = TblStudentsAdmission.objects.all()
+    students = TblStudentsAdmissions.objects.all()
 
     form = StudentCreationForm()
 
@@ -26,8 +26,7 @@ def view_admin_panel(request):
 def admit_new_student(request):
     if request.method == 'POST':
         post = request.POST
-        print("self===>", post.get('self'))
-        student = TblStudentsAdmission.objects.create(
+        student = TblStudentsAdmissions.objects.create(
             image= request.FILES.get('photo'),
             registration_number = post.get('reg-no'),
             first_name = post.get('first-name'),
@@ -64,7 +63,7 @@ def admit_new_student(request):
 @login_required
 def view_individual_sudent(request, id):
     template = 'admin/individual_stident.html'
-    student = TblStudentsAdmission.objects.get(studentid=id)
+    student = TblStudentsAdmissions.objects.get(studentid=id)
     form = StudentCreationForm()
 
     context = {
@@ -78,7 +77,7 @@ def view_individual_sudent(request, id):
 def update_student_records(request, id):
     if request.method == 'POST':
         post = request.POST
-        student = TblStudentsAdmission.objects.get(studentid=id)
+        student = TblStudentsAdmissions.objects.get(studentid=id)
         
         student.photo = request.FILES.get('photo')
         student.registration_number = post.get('reg-no')
@@ -114,7 +113,7 @@ def update_student_records(request, id):
 @login_required
 def get_mailing_list(request):
     template = 'admin/mailing_list.html'
-    students = TblStudentsAdmission.objects.all()
+    students = TblStudentsAdmissions.objects.all()
     for student in students:
         student.name = f"{student.first_name} {student.last_name}"
 
@@ -131,7 +130,7 @@ def send_bulk_email(request):
         message = request.POST.get('message')
         from_email = 'you@example.com'  # or settings.DEFAULT_FROM_EMAIL
 
-        students = TblStudentsAdmission.objects.exclude(email__isnull=True).exclude(email__exact='').exclude(mail_status='inactive')
+        students = TblStudentsAdmissions.objects.exclude(email__isnull=True).exclude(email__exact='').exclude(mail_status='inactive')
 
         # Prepare the message tuples
         recipient_messages = [

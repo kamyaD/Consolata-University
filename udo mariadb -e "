@@ -1,0 +1,20 @@
+[0;1;32m●[0m mariadb.service - MariaDB 10.3.39 database server
+     Loaded: loaded (/lib/systemd/system/mariadb.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Mon 2025-06-09 21:36:50 EAT; 566ms ago
+       Docs: man:mysqld(8)
+             https://mariadb.com/kb/en/library/systemd/
+   Main PID: 20773 (mysqld)
+     Status: "Taking your SQL requests now..."
+      Tasks: 31 (limit: 9188)
+     Memory: 61.2M
+     CGroup: /system.slice/mariadb.service
+             └─20773 /usr/sbin/mysqld
+
+Wax 09 21:36:50 humphrey-HP-ProBook-640-G5 systemd[1]: Starting MariaDB 10.3.39 database server...
+Wax 09 21:36:50 humphrey-HP-ProBook-640-G5 systemd[1]: Started MariaDB 10.3.39 database server.
+Wax 09 21:36:50 humphrey-HP-ProBook-640-G5 /etc/mysql/debian-start[20817]: Upgrading MySQL tables if necessary.
+Wax 09 21:36:50 humphrey-HP-ProBook-640-G5 /etc/mysql/debian-start[20820]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mLooking for 'mysql' as: /usr/bin/mysql[0m
+Wax 09 21:36:50 humphrey-HP-ProBook-640-G5 /etc/mysql/debian-start[20820]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mLooking for 'mysqlcheck' as: /usr/bin/mysqlcheck[0m
+Wax 09 21:36:50 humphrey-HP-ProBook-640-G5 /etc/mysql/debian-start[20820]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mThis installation of MariaDB is already upgraded to 10.3.39-MariaDB.[0m
+Wax 09 21:36:50 humphrey-HP-ProBook-640-G5 /etc/mysql/debian-start[20820]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mThere is no need to run mysql_upgrade again for 10.3.39-MariaDB.[0m
+Wax 09 21:36:50 humphrey-HP-ProBook-640-G5 /etc/mysql/debian-start[20820]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mYou can use --force if you still want to run mysql_upgrade[0m

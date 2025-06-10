@@ -108,7 +108,11 @@
     <!-- Form -->
     <div class="card shadow mb-4">
         <div class="card-body">
-    <form id="multiStepForm">
+          <form id="multiStepForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="step-content active" id="step-1">
+              …
+          
       <div class="step-content active" id="step-1">
         <div class="row">
             <h5><strong>Personal Information</strong></h5>
