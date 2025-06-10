@@ -26,7 +26,6 @@ def view_admin_panel(request):
 def admit_new_student(request):
     if request.method == 'POST':
         post = request.POST
-        print("self===>", post.get('self'))
         student = TblStudentsAdmissions.objects.create(
             image= request.FILES.get('photo'),
             registration_number = post.get('reg-no'),
