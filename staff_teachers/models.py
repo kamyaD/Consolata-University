@@ -191,3 +191,39 @@ class TblRecordSlip(models.Model):
     class Meta:
         managed = False
         db_table = 'tbl_record_slip'
+
+DAY_CHOICES = [
+    ('Monday', 'Monday'),
+    ('Tuesday', 'Tuesday'),
+    ('Wednesday', 'Wednesday'),
+    ('Thursday', 'Thursday'),
+    ('Friday', 'Friday')
+]
+
+class Timetable(models.Model):
+    day = models.CharField(max_length=200, choices=DAY_CHOICES, null=True, blank=True)
+    class_no = models.IntegerField()
+    from_time = models.CharField(max_length=200, null=True, blank=True)
+    to_time = models.CharField(max_length=200, null=True, blank=True)
+    lecturer = models.CharField(max_length=250, null=True, blank=True)
+    courses = models.CharField(max_length=256, null=True, blank=True)
+    room = models.CharField(max_length=100, null=True, blank=True)
+
+class studentsResults(models.Model):
+    congregation = models.CharField(max_length=200, null=True, blank=True)
+    s_no = models.CharField(max_length=200, null=True, blank=True)
+    reg_no = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
+    plato_republic = models.CharField(max_length=200, null=True, blank=True)
+    modern_world_history = models.CharField(max_length=200, null=True, blank=True)
+    special_ethicks = models.CharField(max_length=200, null=True, blank=True)
+    logic = models.CharField(max_length=200, null=True, blank=True)
+    emmanuel_kant = models.CharField(max_length=200, null=True, blank=True)
+    edith_stein = models.CharField(max_length=200, null=True, blank=True)
+    philosophical_latin = models.CharField(max_length=200, null=True, blank=True)
+    christianity_philosophy = models.CharField(max_length=200, null=True, blank=True)
+    ancient_thought = models.CharField(max_length=200, null=True, blank=True)
+    comprehensive_written = models.CharField(max_length=200, null=True, blank=True)
+    comprehensives_oral = models.CharField(max_length=200, null=True, blank=True)
+    
+

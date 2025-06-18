@@ -158,7 +158,7 @@
                 </ul>
               </li>
               <li class="dropdown-submenu">
-                <a class="dropdown-item dropdown-toggle" href="{% url 'home:theology-school' %}">School of Theology</a>
+                <a class="dropdown-item dropdown-toggle" href="{% url 'home:theology-school'%}">School of Theology</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Theology</a></li>
                   <li><a class="dropdown-item" href="#">Arts & Social Sciences</a></li>
@@ -166,7 +166,7 @@
                 </ul>
               </li>
               <li class="dropdown-submenu">
-                <a class="dropdown-item dropdown-toggle" href="{% url 'home:psychology-school' %}">School Of Psychology</a>
+                <a class="dropdown-item dropdown-toggle" href="{% url 'home:psychology-school'%}">School Of Psychology</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">IOP</a></li>
                   <li><a class="dropdown-item" href="#">IYS</a></li>
@@ -226,7 +226,7 @@
           </li>
           
           <li class="nav-item dropdown">
-            <a class="nav-link " href="#" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); return false;" id="ciceDropdown" data-bs-toggle="dropdown" style="color: #163650;">
+            <a class="nav-link dropdown-toggle" href="#" id="ciceDropdown" data-bs-toggle="dropdown" style="color: #163650;">
             CONTACTS
             </a>
             <!-- <ul class="dropdown-menu">
@@ -252,133 +252,6 @@
   <main class="main" >
 
     <!-- Hero Section -->
-    <section id="heroCarouselWrapper" class="section bg-white py-0">
-      <div id="heroCarousel" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
-    
-        <div id="heroCarousel" class="carousel slide carousel-fade rounded shadow" data-bs-ride="carousel">
-    
-          <div class="carousel-inner rounded">
-    
-            <!-- Slide 1 -->
-            <div class="carousel-item active position-relative">
-              <img src="{% static 'img/CIP_graduation.jpg' %}" class="d-block w-100 carousel-image" alt="Graduation">
-            
-              <!-- Dark overlay -->
-              <div class="carousel-overlay"></div>
-            
-              <!-- Caption text -->
-              <div class="carousel-caption text-start">
-                <span class="bg-tangaza-blue px-3 py-1 d-inline-block">
-                  <h7 class="display-5 fw-bold text-white" style="font-size: 2.0rem;">School Of Philosophy</h7>
-                </span>
-                
-                <p class="text-light"><h5>
-                We offer Baccalaureate, Bachelor,Diploma and Certificate in Philosophy
-                </h5></p>
-                <div class="mt-3">
-                  <a href="{% url 'home:philosophy-school' %}" class="btn btn-outline-primary btn-sm enroll-btn">Learn More</a>
-                </div>
-              </div>
-            </div>
-            
-    
-            <!-- Slide 2 -->
-            <div class="carousel-item">
-              <img src="{% static 'img/CIP_graduates.jpg' %}" class="d-block w-100 carousel-image" alt="Library">
-
-               <!-- Dark overlay -->
-               <div class="carousel-overlay"></div>
-            
-               <!-- Caption text -->
-               <div class="carousel-caption text-start">
-
-              <!-- <div class="carousel-caption caption-small d-flex flex-column justify-content-center align-items-start"> -->
-                <span class="bg-tangaza-blue px-3 py-1 d-inline-block">
-                  <h5 class="display-5 fw-bold text-white" style="font-size: 2.0rem;">Language Center</h2>
-                </span>
-                <p class="text-light"><h5>We offer over ten international languages, visit language center to learn more.</h5></p>
-                <div class="mt-3 ">
-                  <a href="{% url 'home:language-center' %}" class="btn btn-outline-primary btn-sm enroll-btn">Language Center</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="carousel-item">
-              <img src="{% static 'img/entrance.jpg' %}" class="d-block w-100 carousel-image" alt="Students">
-               <!-- Dark overlay -->
-               <div class="carousel-overlay"></div>
-            
-               <!-- Caption text -->
-               <div class="carousel-caption text-start">
-                <span class="bg-tangaza-blue px-3 py-1 d-inline-block">
-                  <h7 class="display-5 fw-bold text-white" style="font-size: 2.0rem;">School Of Theology</h7>
-                </span>
-                <p class="text-light"><h5>We offer Baccalaureate, Bachelor,Diploma and Certificate in theology.</h5></p>
-                <div class="mt-3">
-                  <a href="{% url 'home:theology-school' %}" class="btn btn-outline-primary btn-sm enroll-btn">Enroll Now</a>
-                </div>
-              </div>
-            </div>
-    
-            <!-- Slide 4 -->
-            <div class="carousel-item">
-              <img src="{% static 'img/faculty.jpg' %}" class="d-block w-100 carousel-image" alt="Students">
-              <!-- Dark overlay -->
-              <div class="carousel-overlay"></div>
-            
-              <!-- Caption text -->
-              <div class="carousel-caption text-start">
-                <span class="bg-tangaza-blue px-3 py-1 d-inline-block">
-                  <h7 class="display-5 fw-bold text-white" style="font-size: 2.0rem;">School Of Psychology</h7>
-                </span>
-                <p class="text-light"><h5>We offer Baccalaureate, Bachelor,Diploma and Certificate in Psychology.</h5></p>
-                <div class="mt-2">
-                  <a href="{% url 'home:psychology-school' %}" class="btn btn-outline-primary btn-sm enroll-btn">Enroll Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'img/best.jpg' %}" class="d-block w-100 carousel-image" alt="Students">
-              <div class="carousel-overlay"></div>
-            
-              <!-- Caption text -->
-              <div class="carousel-caption text-start">
-                <span class="bg-tangaza-blue px-3 py-1 d-inline-block">
-                  <h7 class="display-5 fw-bold text-white" style="font-size: 2.0rem;">Where Excellence Meets Opportunity</h7>
-                </span>
-                <p class="text-light"><h5>Prepare for a brighter future with quality education and training.</h5></p>
-                <div class="mt-3">
-                  <a href="{% url 'userauth:login' %}" class="btn btn-outline-primary btn-sm enroll-btn">Enroll Now</a>
-                </div>
-                
-              </div>
-            </div>
-    
-          </div>
-    
-          <!-- Controls -->
-          <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-    
-          <!-- Indicators -->
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-          </div>
-    
-        </div>
-      </div>
-    </section>
     
     
 
@@ -390,10 +263,10 @@
           <div class="col-lg-3 px-4 d-flex flex-column" style="min-height: calc(60vh - 60px);">
             <div class="flex-grow-1 d-flex flex-column p-3 rounded shadow-sm" style="background-color: #163650;">
               <!-- <h5 class="text-white mb-4">Menu</h5> Menu title -->
-              <img src="{% static 'img/image.png' %}" class="card card-profile border-0 shadow-sm mt-3 mt-md-0" alt="Students">
-              <ul class="nav flex-column border-0 card2 shadow-sm mt-3 mt-md-0">
+              <img src="{% static 'img/theology.png' %}" class="card card-profile border-0 shadow-sm mt-3 mt-md-0" alt="Students"/>
+              <ul class="nav flex-column border-0 card2 shadow-sm  mt-md-0">
                 <li class="nav-item">
-                  <a class="nav-link active text-white text-center" href="{% url 'userauth:login' %}"><strong>Online Applicattion</strong></a>
+                    <a class="nav-link active text-white text-center " href="{% url 'userauth:login' %}"><strong>Online Applicattion</strong></a>
                 </li>
                 <!-- <li class="nav-item">
                   <a class="nav-link text-white" href="#philosophy">Philosophy Program</a>
@@ -409,46 +282,65 @@
             </div>
           </div>
           
-          
-    
-          
-
-    
           <!-- Content Column -->
           <div class="col-lg-9" data-aos="fade-up" data-aos-delay="200">
             <div class="row">
               
               <!-- Left: Brief History -->
-              <div class="col-md-8 content">
-                <h4 class="mb-3">BRIEF HISTORY OF CONSOLATA UNIVERSITY</h4>
-                <p>
-                  The Consolata Missionaries in Kenya, following the directives of the Congregation for the Evangelization of Peoples and the encouragement of the AMECEA Conference (Lusaka 1970), decided to start the construction of their own Seminary.
-                </p>
-                
-                <p>
-                  In 1970 the recruiting of African Candidates for Religious Missionary Priesthood began. The building of the residence (near to St. Thomas Aquinas Seminary in Langata) was started in 1971 and in 1972 part of it was ready. The Philosophy students began attending classes at the nearby Kenya National Diocesan Major Seminary, but in 1974 it became necessary to have classes and other facilities for Consolata students, since the Philosophical course of the National Seminary was transferred to Mabanga, in Bungoma District.
-                </p>
-                
-                <p>
-                  Thus a two-year course in Philosophy was set up at Consolata Seminary, ending with the award of a Diploma in Philosophy and Religious Studies. In order to meet the needs of an increasing number of students both from the Consolata and other Congregations, new buildings were added in 1980 and the curriculum was revised into a 3-year course to prepare for affiliation to Urbaniana University in Rome, which was granted in 1982, enabling the students to obtain the First Degree in Philosophy (Baccalaureate) recognized by the Church and in line with other Ecclesiastical Universities all over the world.
-                </p>
-                
-                <p>
-                  In 1996 a decision was reached to make the Seminary and Institute of Philosophy two independent institutions so they could better develop each in its own way. A new building for the Institute was erected in 1997 and inaugurated in January 1998. A library was built in 1999 and a hall added in 2003.
-                </p>
-                
-                <p>
-                  For the information of civil authorities, students, and the public at large, it should be clearly understood that the main purpose of our Institute is to prepare candidates for the priesthood and religious life with a view to proceed to theological studies. Therefore, our B.A. in Philosophy is mainly for ecclesiastical purposes, to qualify the student to enter a Theology College or Seminary for priestly academic formation.
-                </p>
-                
-                <p>
-                  In view of the history, the needs for formation, and future development, the Consolata Institute of Philosophy needs to renew its Affiliation to Urbaniana University.
-                </p>
-                
+              <div class="col-md-12 content">
+                <!-- <section id="about-theology"> -->
+                    <h2>About the School of Theology</h2>
+                  
+                    <p>
+                      At <strong>CIU School of Theology</strong>, we are dedicated to providing an exceptional theological formation that nurtures the mind, strengthens the spirit, and prepares mission agents well equipped to carry out the mission of the Church in the world—with compassion, wisdom, and integrity.
+                    </p>
+                  
+                    <p>
+                      Rooted in a deep commitment to the Catholic faith, theological education, and missionary formation, our programs blend rigorous academic training with meaningful preparation for mission and ministry in today’s ever-changing world. Students benefit from a dynamic environment enriched by international and intercultural experiences, allowing them to grow through engagement with people from diverse countries, cultures, languages, and social contexts.
+                    </p>
+                  
+                    <p>
+                      Our faculty—comprising experienced Priests and Religious—is passionate about mentoring students to become leaders who can think critically, serve selflessly, and contribute positively to the global mission of the Church. Whether you are preparing for pastoral ministry, academic research, or community leadership, CIU School of Theology provides a supportive and transformative space where faith, intellectual growth, and missionary spirit flourish together.
+                    </p>
+                    <h4>Our Mission</h4>
+                    <p>
+                      We aim to provide a transformative educational experience that prepares leaders who are academically proficient, compassionate, ethical, and socially responsible. Rooted in the rich tradition of the Consolata Missionaries, we foster a learning community where intellectual curiosity is encouraged, spiritual growth is nurtured, and a passion for mission and service is ignited.
+                    </p>
+                  
+                    <h4>Spiritual Formation & Guidance</h4>
+                    <p>
+                      The School of Theology offers opportunities for regular spiritual services, prayer groups, retreats, and personal spiritual direction. These experiences nurture the spiritual lives of students, helping them grow in faith and deepen their relationship with God.
+                    </p>
+                  
+                    <h4>Mentorship & Vocation Guidance</h4>
+                    <p>
+                      Faculty members often serve as mentors, guiding students on their personal faith journeys and helping them reflect deeply on their vocational call. This mentorship plays a crucial role in the holistic formation of students.
+                    </p>
+                  
+                    <h4>Why Study at CIU School of Theology?</h4>
+                    <ul>
+                      <li><strong>Education:</strong> Rooted in the philosophy of Catholic Higher Education with a special focus on Mission Studies.</li>
+                      <li><strong>Holistic Formation:</strong> Integration of rigorous theological education with personal spiritual development for well-rounded leadership.</li>
+                      <li><strong>Diverse Programs:</strong> Flexible courses designed for pastoral ministry, academic research, and community leadership.</li>
+                      <li><strong>Global Perspective:</strong> A cross-cultural approach to theology that enhances ministry, outreach, and missionary service.</li>
+                    </ul>
+                  
+                    
+                  
+                    <h4>Courses Offered</h4>
+                    <ul>
+                      <li>Baccalaureate in Theology (STB)</li>
+                      <li>Bachelor of Theology (BATh)</li>
+                      <li>Diploma in Theology</li>
+                      <li>Certificate in Theology</li>
+                      <li>Diploma in Religious Studies</li>
+                    </ul>
+                  <!-- </section> -->
+                  
               </div>
           
               <!-- Right: Card with Image -->
-              <div class="col-md-4">
+              <!-- <div class="col-md-4">
                 <div class="card card-profile border-0 shadow-sm mt-3 mt-md-0">
                   <div class="card-body text-center">
                     <img src="{% static 'img/chancellor.jpeg' %}" alt="Rev. Fr. Dr. James Kabata"
@@ -459,7 +351,7 @@
                     <p class="card-text">Rev. Fr. Dr. Kabata has led the institution with a vision of academic excellence rooted in Catholic values and a commitment to holistic education.</p>
                   </div>
                 </div>
-              </div>
+              </div> -->
               
           
             </div>

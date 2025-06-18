@@ -105,14 +105,12 @@
       </div>
     </div>
 
-    <!-- Form -->
-    <div class="card shadow mb-4">
-        <div class="card-body">
-          <form id="multiStepForm" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="step-content active" id="step-1">
-              …
-          
+    <form id="multiStepForm" method="post" enctype="multipart/form-data" action="{% url 'student:submit-online-app' %}">
+      <div class="card shadow mb-4">
+          <div class="card-body">
+            
+              {% csrf_token %}
+              
       <div class="step-content active" id="step-1">
         <div class="row">
             <h5><strong>Personal Information</strong></h5>
@@ -121,7 +119,7 @@
                 <label for="ticketFunction" class="">Sir Name:</label>
                 <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
                 <div class="col-sm-8  py-2">
-                  <input type="text" class="form-control" id="sir-name" name="sir-name" required>
+                  <input type="text" class="form-control" id="sir-name" name="sir-name" >
                 </div>
               </div>
             </div>
@@ -144,12 +142,12 @@
 
           </div>
           <div class="row">
-            <div class="col-sm-4 col-form-label" id="step-1">
+            <div class="col-sm-3 col-form-label">
               <div class="form-group row">
                 <label for="ticketFunction" class="">Gender:</label>
                 <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
                 <div class="col-sm-8  py-2">
-                    <select name="gender" id="gender" class="form-control" required>
+                    <select name="gender" id="gender" class="form-control" >
                         {% for choice in form.gender.field.choices %}
                           <option value="{{ choice.0 }}" {% if choice.0 == form.gender.value %}selected{% endif %}>
                             {{ choice.1 }}
@@ -159,15 +157,15 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div class="form-group row">
                 <label for="ticketFunction" class="">Date Of Birth:</label>
                 <div class="col-sm-8  py-2">
-                  <input type="text" class="form-control" id="birth-date" name="birth-date">
+                  <input type="date" class="form-control" id="birth-date" name="birth-date">
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group row">
                   <label for="ticketFunction" class="">Town/Place Of Birth:</label>
                   <div class="col-sm-8  py-2">
@@ -175,15 +173,23 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-3">
+                <div class="form-group row">
+                  <label for="ticketFunction" class="">Citizenship/Country of Origin:</label>
+                  <div class="col-sm-8  py-2">
+                    <input type="text" class="form-control" id="country" name="country">
+                  </div>
+                </div>
+              </div>
 
           </div>
           <div class="row">
-            <div class="col-sm-4 col-form-label" id="step-1">
+            <div class="col-sm-3 col-form-label">
               <div class="form-group row">
                 <label for="ticketFunction" class="">Marital Status:</label>
                 <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
                 <div class="col-sm-8  py-2">
-                  <select name="gender" id="gender" class="form-control" required>
+                  <select name="marital-status" id="marital-status" class="form-control" >
                     {% for choice in form.marital_status.field.choices %}
                       <option value="{{ choice.0 }}" {% if choice.0 == form.marital_status.value %}selected{% endif %}>
                         {{ choice.1 }}
@@ -193,7 +199,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div class="form-group row">
                 <label for="ticketFunction" class="">Diocese:</label>
                 <div class="col-sm-8  py-2">
@@ -201,7 +207,15 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+              <div class="form-group row">
+                <label for="ticketFunction" class="">Passport Or ID No:</label>
+                <div class="col-sm-8  py-2">
+                  <input type="text" class="form-control" id="passport" name="passport">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
                 <div class="form-group row">
                   <label for="ticketFunction" class="">Congregation:</label>
                   <div class="col-sm-8  py-2">
@@ -221,12 +235,12 @@
       <div class="step-content" id="step-2">
         <div class="row mt-5">
             <h5><strong>Contact Information</strong></h5>
-            <div class="col-md-4 step-content active" id="step-1">
+            <div class="col-md-4 step-content">
               <div class="form-group row">
                 <label for="ticketFunction" class="">Permanent Adress:</label>
                 <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
                 <div class="col-sm-8  py-2">
-                  <input type="text" class="form-control" id="permanent-address" name="permanent-address" required>
+                  <input type="text" class="form-control" id="permanent-address" name="permanent-address" >
                 </div>
               </div>
             </div>
@@ -248,7 +262,7 @@
               </div>
         </div>
         <div class="row">
-          <div class="col-sm-4 col-form-label" id="step-1">
+          <div class="col-sm-4 col-form-label" >
             <div class="form-group row">
               <label for="ticketFunction" class="">Next Of Kin:</label>
               <div class="col-sm-8  py-2">
@@ -298,7 +312,7 @@
               <label for="ticketFunction" class="">Registration/Student Status:</label>
               <!-- <label for="relatedRecord"><strong>Location</strong></label> -->
               <div class="col-sm-8  py-2">
-                <select name="registration_status" id="registration_status" class="form-control" required>
+                <select name="registration_status" id="registration_status" class="form-control" >
                   {% for choice in form.registration_status.field.choices %}
                     <option value="{{ choice.0 }}" {% if choice.0 == form.registration_status.value %}selected{% endif %}>
                       {{ choice.1 }}
@@ -312,7 +326,7 @@
             <div class="form-group row">
               <label for="ticketFunction" class="">School:</label>
               <div class="col-sm-8  py-2">
-                <select name="school" id="school" class="form-control" required>
+                <select name="school" id="school" class="form-control" >
                   {% for choice in form.school.field.choices %}
                     <option value="{{ choice.0 }}" {% if choice.0 == form.school.value %}selected{% endif %}>
                       {{ choice.1 }}
@@ -323,10 +337,10 @@
             </div>
           </div>
           <div class="col-md-4">
-              <div class="form-group row">
+              <div class="form-group row" id="philosophy-school" >
                 <label for="ticketFunction" class="">School Of Philosophy:</label>
                 <div class="col-sm-8  py-2">
-                  <select name="philosophy-school" id="philosophy-school" class="form-control" required>
+                  <select name="philosophy-school" class="form-control" >
                     {% for choice in form.school_of_philosophy.field.choices %}
                       <option value="{{ choice.0 }}" {% if choice.0 == form.school_of_philosophy.value %}selected{% endif %}>
                         {{ choice.1 }}
@@ -338,11 +352,11 @@
             </div>
       </div>
       <div class="row">
-        <div class="col-sm-4 col-form-label">
+        <div class="col-sm-4 col-form-label" id="theology-school">
           <div class="form-group row">
             <label for="ticketFunction" class="">School Of Theology:</label>
             <div class="col-sm-8  py-2">
-              <select name="theology-school" id="theology-school" class="form-control" required>
+              <select name="theology-school"  class="form-control" >
                 {% for choice in form.school_of_theology.field.choices %}
                   <option value="{{ choice.0 }}" {% if choice.0 == form.school_of_theology.value %}selected{% endif %}>
                     {{ choice.1 }}
@@ -353,10 +367,10 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="form-group row">
+          <div class="form-group row" id="counselling-school">
             <label for="ticketFunction" class="">School Of Counselling Psychology:</label>
             <div class="col-sm-8  py-2">
-              <select name="counselling-school" id="counselling-school" class="form-control" required>
+              <select name="counselling-school"  class="form-control" >
                 {% for choice in form.school_of_counselling.field.choices %}
                   <option value="{{ choice.0 }}" {% if choice.0 == form.school_of_counselling.value %}selected{% endif %}>
                     {{ choice.1 }}
@@ -370,7 +384,7 @@
             <div class="form-group row">
               <label for="ticketFunction" class="">Anticipated Program Duration:</label>
               <div class="col-sm-8  py-2">
-                <select name="program-duration" id="program-duration" class="form-control" required>
+                <select name="program-duration" id="program-duration" class="form-control" >
                   {% for choice in form.anticipated_program_duration.field.choices %}
                     <option value="{{ choice.0 }}" {% if choice.0 == form.anticipated_program_duration.value %}selected{% endif %}>
                       {{ choice.1 }}
@@ -399,7 +413,7 @@
             <div class="form-group row">
               <label for="ticketFunction" class="">Have you ever studied at the Consolata International University (CIU)/Consolata Institute of Philosophy Before?:</label>
               <div class="col-sm-8  py-2">
-                <select name="theology-school" id="theology-school" class="form-control" required>
+                <select name="ever-studied-at-ciu" id="ever-studied-at-ciu" class="form-control" >
                   {% for choice in form.ever_studied_at_ciu.field.choices %}
                     <option value="{{ choice.0 }}" {% if choice.0 == form.ever_studied_at_ciu.value %}selected{% endif %}>
                       {{ choice.1 }}
@@ -412,20 +426,20 @@
           </div>
           <div class="row">
           <div class="col-md-12">
-            <div class="form-group row">
+            <div class="form-group row" id="previous-stud-id">
               <label for="ticketFunction" class="">If yes, Indicate your previous student ID number:</label>
               <div class="col-sm-8  py-2">
-                <input type="text" class="form-control" id="previous-stud-id" name="previous-stud-id">
+                <input type="text" class="form-control"  name="previous-stud-id">
               </div>
             </div>
           </div>
           </div>
           <div class="row">
           <div class="col-md-12">
-              <div class="form-group row">
+              <div class="form-group row" id="previous-ciu-school">
                 <label for="ticketFunction" class="">In which School of the Consolata International University (CIU) did you study before?</label>
                 <div class="col-sm-8  py-2">
-                  <input type="text" class="form-control" id="previous-ciu-school" name="previous-ciu-school">
+                  <input type="text" class="form-control"  name="previous-ciu-school">
                 </div>
               </div>
             </div>
@@ -435,17 +449,17 @@
         <div class="row">
           <!-- <div class="col-md-12"> -->
 
-          <div class="col-sm-6 col-form-label">
+          <div class="col-sm-6 col-form-label" id="from">
             <label for="ticketFunction" class="">Year Of Enrolment(FROM):</label>
                 <div class="col-sm-6  py-2">
-                  <input type="date" class="form-control" id="from" name="from">
+                  <input type="date" class="form-control"  name="from">
                 </div>
             
           </div>
-          <div class="col-sm-6 col-form-label" id="step-1">
+          <div class="col-sm-6 col-form-label" id="to">
             <label for="ticketFunction" class="">Year Of Enrolment(To):</label>
                 <div class="col-sm-6  py-2">
-                  <input type="date" class="form-control" id="to" name="to">
+                  <input type="date" class="form-control"  name="to">
                 </div>
             
           </div>
@@ -518,7 +532,7 @@
               <div class="form-group row">
                 <label for="ticketFunction" class="">Email:</label>
                 <div class="col-sm-8  py-2">
-                  <input type="text" class="form-control" id="other-names" name="other-names">
+                  <input type="text" class="form-control" id="sponsor-email" name="sponsor-email">
                 </div>
               </div>
             </div>
@@ -534,7 +548,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Indicate how the fee will be paid :</label>
             <div class="col-sm-8  py-2">
-              <input type="text" class="form-control" id="other-names" name="other-names">
+              <input type="text" class="form-control" id="how-fee-will-be-paid" name="how-fee-will-be-paid">
             </div>
           </div>
         </div>
@@ -542,7 +556,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Name of Sponsor :</label>
             <div class="col-sm-8  py-2">
-              <input type="text" class="form-control" id="other-names" name="other-names">
+              <input type="text" class="form-control" id="sponsor" name="sponsor">
             </div>
           </div>
         </div>
@@ -550,7 +564,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Recommendation and Sponsorship:</label>
             <div class="col-sm-8  py-2">
-              <select name="recomendation" id="recomendation" class="form-control" required>
+              <select name="recomendation-sponsor" id="recomendation-sponsor" class="form-control" >
                 {% for choice in form.recomendation_type.field.choices %}
                   <option value="{{ choice.0 }}" {% if choice.0 == form.recomendation_type.value %}selected{% endif %}>
                     {{ choice.1 }}
@@ -573,7 +587,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Phone:</label>
             <div class="col-sm-8  py-2">
-              <input type="text" class="form-control" id="recomendation-address" name="recomendation-address">
+              <input type="text" class="form-control" id="recomendation-phone" name="recomendation-phone">
             </div>
           </div>
         </div>
@@ -581,7 +595,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Email:</label>
             <div class="col-sm-8  py-2">
-              <input type="text" class="form-control" id="recomendation-address" name="recomendation-address">
+              <input type="text" class="form-control" id="recomendation-email" name="recomendation-email">
             </div>
           </div>
         </div>
@@ -592,7 +606,7 @@
             <label for="ticketFunction" class="">Indicate the sponsoring community, province or house if the Congregation has more than one community or province
               sponsoring the students in the Consolata International University (CIU). Otherwise, leave it blank. :</label>
             <div class="col-sm-8  py-2">
-              <input type="text" class="form-control" id="other-names" name="other-names">
+              <input type="text" class="form-control" id="sponsorship-community" name="sponsorship-community">
             </div>
           </div>
         </div>
@@ -603,7 +617,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">How did you come to know about the Consolata International University (CIU)? :</label>
             <div class="col-sm-8  py-2">
-              <input type="text" class="form-control" id="other-names" name="other-names">
+              <input type="text" class="form-control" id="how-you-knew-consolata" name="other-names">
             </div>
           </div>
         </div>
@@ -614,7 +628,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Do you have any form of disability?:</label>
             <div class="col-sm-8  py-2">
-              <select name="program-duration" id="program-duration" class="form-control" required>
+              <select name="disability" id="disability" class="form-control" >
                 {% for choice in form.disability.field.choices %}
                   <option value="{{ choice.0 }}" {% if choice.0 == form.disability.value %}selected{% endif %}>
                     {{ choice.1 }}
@@ -627,11 +641,11 @@
 
       </div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" id="disability-nature">
           <div class="form-group row">
             <label for="ticketFunction" class="">If yes, What is the nature of your disability?:</label>
             <div class="col-sm-8  py-2">
-              <input type="text" class="form-control" id="other-names" name="other-names">
+              <input type="text" class="form-control"  name="disability-nature">
             </div>
           </div>
         </div>
@@ -643,7 +657,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">I attest that the information provided on this form is true, correct and accurate:</label>
             <div class="col-sm-8  py-2">
-              <select name="program-duration" id="program-duration" class="form-control" required>
+              <select name="confirm-information" id="confirm-information" class="form-control" >
                 {% for choice in form.disability.field.choices %}
                   <option value="{{ choice.0 }}" {% if choice.0 == form.disability.value %}selected{% endif %}>
                     {{ choice.1 }}
@@ -666,7 +680,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">A non-refundable Application Fee receipt:</label>
             <div class="col-sm-8  py-2">
-              <input type="file" class="form-control" id="other-names" name="other-names">
+              <input type="file" class="form-control" id="non-refundable-fee" name="non-refundable-fee">
             </div>
           </div>
         </div>
@@ -674,7 +688,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Copy of your ID/Passport:</label>
             <div class="col-sm-8  py-2">
-              <input type="file" class="form-control" id="other-names" name="other-names">
+              <input type="file" class="form-control" id="copy-of-id" name="copy-of-id">
             </div>
           </div>
         </div>
@@ -682,7 +696,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Two (2) passport sized photos:</label>
             <div class="col-sm-8  py-2">
-              <input type="file" class="form-control" id="other-names" name="other-names">
+              <input type="file" class="form-control" id="passport-photo" name="passport-photo">
             </div>
           </div>
         </div>
@@ -690,7 +704,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Copies of all your degrees:</label>
             <div class="col-sm-8  py-2">
-              <input type="file" class="form-control" id="other-names" name="other-names">
+              <input type="file" class="form-control" id="coppy-of-degrees" name="coppy-of-degrees">
             </div>
           </div>
         </div>
@@ -698,7 +712,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Copies of all transcripts:</label>
             <div class="col-sm-8  py-2">
-              <input type="file" class="form-control" id="other-names" name="other-names">
+              <input type="file" class="form-control" id="coppy-of-transcripts" name="coppy-of-transcripts">
             </div>
           </div>
         </div>
@@ -706,7 +720,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Copies of all relevant Professional Qualifications:</label>
             <div class="col-sm-8  py-2">
-              <input type="file" class="form-control" id="other-names" name="other-names">
+              <input type="file" class="form-control" id="coppy-of-qualifications" name="coppy-of-qualifications">
             </div>
           </div>
         </div>
@@ -714,7 +728,7 @@
           <div class="form-group row">
             <label for="ticketFunction" class="">Copies of relevant Higher Diplomas, Diplomas and certificates:</label>
             <div class="col-sm-8  py-2">
-              <input type="file" class="form-control" id="other-names" name="other-names">
+              <input type="file" class="form-control" id="copies-of-diplomas" name="copies-of-diplomas">
             </div>
           </div>
         </div>
@@ -733,6 +747,8 @@
     function nextStep(current) {
       const currentStep = document.getElementById(`step-${current}`);
       const nextStep = document.getElementById(`step-${current + 1}`);
+      // const nextStep = 2
+   
 
       const currentHeader = document.getElementById(`step-header-${current}`);
       const nextHeader = document.getElementById(`step-header-${current + 1}`);
@@ -758,6 +774,66 @@
       prevStep.classList.add("active");
       prevHeader.classList.add("active");
     }
+    document.addEventListener('DOMContentLoaded', function() {
+      const schoolSelect = document.getElementById('school');
+      const philosophyDiv = document.getElementById('philosophy-school');
+      const theologyDiv = document.getElementById('theology-school');
+      const counsellingDiv = document.getElementById('counselling-school');
+
+      const everStudiedSelect = document.getElementById('ever-studied-at-ciu');
+      const previousStudDiv = document.getElementById('previous-stud-id');
+      const prevCiuDiv = document.getElementById('previous-ciu-school');
+      const prevFromDiv = document.getElementById('from');
+      const prevToDiv  = document.getElementById('to');
+
+      const disabilitySelect = document.getElementById('disability');
+      const natureDiv = document.getElementById('disability-nature')
+
+
+      schoolSelect.addEventListener('change', function() {
+        const schoolValue = this.value;
+        philosophyDiv.style.display = 'none';
+        theologyDiv.style.display = 'none';
+        counsellingDiv.style.display='none';
+        
+        if (schoolValue === 'School Of Philosophy'){
+          philosophyDiv.style.display = 'block';
+        }else if (schoolValue === 'School Of Theology'){
+          theologyDiv.style.display = 'block';
+        }else if (schoolValue === 'School Of Counselling Psychology'){
+          counsellingDiv.style.display = 'block';
+        }
+      });
+
+      everStudiedSelect.addEventListener('change', function() {
+        const everStudValue = this.value;
+        previousStudDiv.style.display = 'none';
+        prevCiuDiv.style.display = 'none';
+        prevToDiv.style.display = 'none';
+        prevFromDiv.style.display = 'none';
+
+        if (everStudValue === 'Yes'){
+          previousStudDiv.style.display = 'block';
+          prevCiuDiv.style.display = 'block';
+          prevToDiv.style.display = 'block';
+          prevFromDiv.style.display = 'block';
+        }
+
+      });
+
+      disabilitySelect.addEventListener('change', function() {
+        const disabilityValue = this.value;
+        natureDiv.style.display = 'none';
+
+        if (disabilityValue === 'Yes'){
+          natureDiv.style.display = 'block';
+        };
+      });
+        
+
+    });
+    
+
   </script>
 
 

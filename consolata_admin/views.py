@@ -4,6 +4,7 @@ from django.contrib import messages
 from student.models import TblStudentsAdmissions
 from .forms import StudentCreationForm
 from django.core.mail import send_mass_mail
+from django.db.models import Q
 
 
 
@@ -11,7 +12,8 @@ from django.core.mail import send_mass_mail
 @login_required
 def view_admin_panel(request):
     template = 'admin/admin_panel.html'
-    students = TblStudentsAdmissions.objects.all()
+    students = TblStudentsAdmissions.objects.filter(registration_number__isnull=False)
+
 
     form = StudentCreationForm()
 
@@ -143,3 +145,19 @@ def send_bulk_email(request):
         return redirect('consolata_admin:mailing-list')  # Replace with your actual redirect
 
     return render(request, 'admin/mailing_list.html')
+
+@login_required
+def applications(request):
+    template = 'admin/applications.html'
+    students = TblStudentsAdmissions.objects.filter(registration_number=None)
+
+    
+
+    form = StudentCreationForm()
+
+    context = {
+        'students': students,
+        'form': form
+    }
+
+    return render(request,template,context)
