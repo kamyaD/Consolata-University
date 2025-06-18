@@ -16,7 +16,7 @@
                 
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="card-title">{{student.first_name}}  {{student.last_name}}</h5>
+                        <h5 class="card-title">{{student.first_name}}  {{student.sir_name}}</h5>
                         <a href="" type="button" class="btn btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#studentModal">Edit Student</a>
                     </div>
                 </div>
@@ -40,14 +40,14 @@
                         <p style="color: black;"><strong>Nationality </strong>: {{student.nationality}}</p>
                         <p style="color: black;"><strong>Date Of Birth </strong>: {{student.date_of_birth}}</p>
                         <p style="color: black;"><strong>ID/Passport</strong>: {{student.id_passport}}</p>
-                        <p style="color: black;"><strong>Registration Number</strong>: {{student.registration_number}}</p>
+                        
                         
                     </div>
                     <div class="col-6">
                         <p style="color: black;"><strong>Contact</strong>: {{student.contact}}</p>
                         <p style="color: black;"><strong>Email </strong>: {{student.email}}</p>
-                        <p style="color: black;"><strong>Address</strong>: {{student.address}}</p>
-                        <!-- <p style="color: black;"><strong>Email </strong>: {{student.state.label|title}}</p> -->
+                        <p style="color: black;"><strong>Registration Number</strong>: {{student.registration_number}}</p>
+                        
                     </div>
                     <!-- <hr> -->
                 </div>
@@ -57,12 +57,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
-                        <p style="color: black;"><strong>Occupation </strong>: {{student.occupation}}</p>
+                        <!-- <p style="color: black;"><strong>Occupation </strong>: {{student.occupation}}</p> -->
                         <p style="color: black;"><strong>Admission Year </strong>: {{student.admission_year}}</p>
                         <p style="color: black;"><strong>Responsible</strong>: {{student.responsible}}</p>
                     </div>
                     <div class="col-6">
-                        <p style="color: black;"><strong>Self</strong>: {{student.billing_self}}</p>
+                        <!-- <p style="color: black;"><strong>Self</strong>: {{student.billing_self}}</p> -->
                         <!-- <p style="color: black;"><strong>Organization </strong>: {{student.email}}</p> -->
                          <p style="color: black;"><strong>Month</strong>: {{student.month}}</p>
                         
@@ -92,6 +92,76 @@
                 </div>
             </div>
         </div>
+        <div class="card shadow mb-4">
+          <div class="card-body">
+              <div class="row">
+                  <div class="col-6">
+                    {% if student.non_refundable_fee %}
+                        <p style="color: black;">
+                          <strong>Non Refundable Fee </strong>: 
+                          <a href="{{ student.non_refundable_fee.url }}" target="_blank">Download</a>
+                        </p>
+                      {% else %}
+                        <p><strong>Non Refundable Fee</strong>: Not uploaded</p>
+                      {% endif %}
+                      {% if student.copy_of_id %}
+                      <p style="color: black;">
+                        <strong>Coppy of ID </strong>: 
+                        <a href="{{ student.copy_of_id.url }}" target="_blank">Download</a>
+                      </p>
+                    {% else %}
+                      <p><strong>Coppy of ID</strong>: Not uploaded</p>
+                    {% endif %}
+                    {% if student.passport_photo %}
+                      <p style="color: black;">
+                        <strong>Passport Photo </strong>: 
+                        <a href="{{ student.passport_photo.url }}" target="_blank">Download</a>
+                      </p>
+                    {% else %}
+                      <p><strong>Passport Photo</strong>: Not uploaded</p>
+                    {% endif %}
+                    {% if student.coppy_of_transcripts %}
+                    <p style="color: black;">
+                      <strong>Coppy Of Transcripts </strong>: 
+                      <a href="{{ student.coppy_of_transcripts.url }}" target="_blank">Download</a>
+                    </p>
+                  {% else %}
+                    <p><strong>Coppy Of Transcripts</strong>: Not uploaded</p>
+                  {% endif %}
+                     
+                      
+                  </div>
+                  <div class="col-6">
+                    {% if student.coppy_of_all_degrees %}
+                    <p style="color: black;">
+                      <strong>Coppy Of All Degrees </strong>: 
+                      <a href="{{ student.coppy_of_all_degrees.url }}" target="_blank">Download</a>
+                    </p>
+                  {% else %}
+                    <p><strong>Coppy Of All Degrees</strong>: Not uploaded</p>
+                  {% endif %}
+                  {% if student.copies_of_diplomas %}
+                    <p style="color: black;">
+                      <strong>Coppy Of Diplomas </strong>: 
+                      <a href="{{ student.copies_of_diplomas.url }}" target="_blank">Download</a>
+                    </p>
+                  {% else %}
+                    <p><strong>Coppy Of Diplomas</strong>: Not uploaded</p>
+                  {% endif %}
+                  {% if student.coppy_of_qualifications %}
+                    <p style="color: black;">
+                      <strong>Coppy Of Qualifications </strong>: 
+                      <a href="{{ student.coppy_of_qualifications.url }}" target="_blank">Download</a>
+                    </p>
+                  {% else %}
+                    <p><strong>Coppy Of Qualifications</strong>: Not uploaded</p>
+                  {% endif %}
+                  
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
         
     </div>
 </div>

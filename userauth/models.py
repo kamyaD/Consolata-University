@@ -56,6 +56,7 @@ class CustomUser(AbstractUser):
     # school = models.CharField(max_length=250, blank=True, null=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=True)
     marital_status = models.CharField(max_length=10, choices=MARITAL_CHOICES, blank=True)
+    username = models.CharField(max_length=200, null=True, blank=True)
 
 
     is_active = models.BooleanField(default=True)

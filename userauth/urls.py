@@ -3,6 +3,7 @@ from django.contrib.auth import views as auth_views
 from . import views
 from student import student_views
 
+app_name = 'userauth'
 
 urlpatterns = [
     path('register/', views.register_view, name='register'),

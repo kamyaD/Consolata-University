@@ -8,5 +8,6 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ['first_name','last_name','email', 'role','school', 'password1', 'password2']
 
+
 class EmailAuthenticationForm(AuthenticationForm):
     username = forms.EmailField(label='Email', max_length=254)

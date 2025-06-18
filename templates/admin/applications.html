@@ -1,0 +1,69 @@
+{% extends 'home/base2.html' %}
+{% load static %}
+
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}">
+{% endblock %}
+
+{% block objectives %}active{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title">Online Applications</h5>
+                    </div>
+                    <table id="biannual_appraisals" class="table table-striped table-bordered display text-nowrap">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>First Name</th>
+                                <th>Sir Name</th>          
+                                <th>Country Of Origin</th>
+                                <th>School</th>
+                                <th>Registration Status</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                            <tr>
+                                <td>{{student.studentid}}</td>
+                                <td><a href="{% url 'consolata_admin:student-panel' student.studentid %}">{{student.first_name}}</a></td>
+                                <td>{{student.sir_name}}</td>
+                                <td>{{student.nationality}}</td>
+                                <td>{{student.school}}</td>
+                                <td>{{student.registration_status}}</td>
+                                <td>{{student.gender}}</td>
+                                <td>{{student.email}}</td>
+                                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static 'assets/js/vendor.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets/js/datatable/datatable-basic.init.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('#biannual_appraisals').DataTable({
+            "order": [[ 1, "desc" ]]  // Order by the Period column (4th column)
+        });
+    });
+</script>
+
+{% endblock %}
