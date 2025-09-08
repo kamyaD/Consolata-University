@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ciu.ac.ke/sitemap.xml

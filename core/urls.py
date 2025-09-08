@@ -26,6 +26,7 @@ urlpatterns = [
     path('staff/', include('staff_teachers.urls')),
     path('student/', include('student.urls')),
     path('consolata/', include('consolata_admin.urls')),
+    path('gallery/', include('gallery.urls')),
     path('', include('home.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

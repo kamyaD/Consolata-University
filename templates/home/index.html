@@ -134,7 +134,7 @@
     <div class="container-fluid d-flex align-items-center justify-content-between px-3 ml-20" >
       <a href="{% url 'home:home' %}" class="logo d-flex align-items-center me-auto">
         <img src="{% static 'img/consolata.png' %}" 
-             alt="Logo" 
+             alt="Consolata International University" 
              class="ciu-logo img-fluid mb-5" 
              style="width: 400px; height: auto;" />
       
@@ -218,6 +218,7 @@
           </li>
 
           <li class="nav-item"><a class="nav-link" href="#" style="color: #163650;">RESEARCH</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'gallery:gallery' %}" style="color: #163650;">Gallery</a></li>
 
           <a class="e-n-menu-title-text" href="https://library.consolatainstituteofphilosophy.com/" id="aboutDropdown" role="button" style="color: #163650;">
             LIBRARY
@@ -446,15 +447,23 @@
                 <li class="nav-item">
                   <a class="nav-link active text-white text-center" href="{% url 'userauth:login' %}"><strong>Online Applicattion</strong></a>
                 </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link text-white" href="#philosophy">Philosophy Program</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="#affiliation">Affiliation</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="#graduates">Graduates</a> -->
-                <!--</li>-->
+              </ul>
+                <!-- <div class="sidebar-video" style="margin:10px 0;"> -->
+                  <div class="sidebar-video" style="margin:10px 0; text-align:center;">
+                    <a href="https://www.youtube.com/live/sTK9TluTqrA" target="_blank" style="text-decoration:none; color:inherit;">
+                        <img src="https://img.youtube.com/vi/sTK9TluTqrA/hqdefault.jpg" 
+                             alt="Watch Live on YouTube" 
+                             style="width:100%; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+                        <div style="margin-top:8px; font-size:14px; font-weight:600; color:#333; background:#f9f9f9; padding:6px 10px; border-radius:6px; display:inline-block; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                            🎥 CONSOLATA INT. UNIVERSITY (CIU) | INAUGURAL MASS & INVESTITURE
+                        </div>
+                    </a>
+                </div>
+                
+               <div class="sidebar-video" style="margin:10px 0;">
+
+              </div>
+              
               </ul>
               
             </div>
@@ -471,7 +480,7 @@
               
               <!-- Left: Brief History -->
               <div class="col-md-8 content">
-                <h4 class="mb-3">BRIEF HISTORY OF CONSOLATA UNIVERSITY</h4>
+                <h4 class="mb-3">CONSOLATA INTERNATIONAL UNIVERSITY </h4>
                 <p>
                   The Consolata Missionaries in Kenya, following the directives of the Congregation for the Evangelization of Peoples and the encouragement of the AMECEA Conference (Lusaka 1970), decided to start the construction of their own Seminary.
                 </p>

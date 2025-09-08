@@ -9,11 +9,14 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+import environ
 import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +28,7 @@ SECRET_KEY = 'django-insecure-vvccg6^@(asd7g(kwtw298^7@f0p09n^)o3eji)%!#&$c8te#a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ciu.ac.ke']
+ALLOWED_HOSTS = ['ciu.ac.ke', '127.0.0.1']
 
 
 # Application definition
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'staff_teachers',
     'consolata_admin',
     'home',
+    'gallery'
 ]
 
 MIDDLEWARE = [
@@ -75,41 +79,28 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'okbxihov_cipporta_students_results',
-#         'USER': 'okbxihov_dommy',
-#         'PASSWORD': 'WTL_T3p=jcEAPnjQ',  # Not the SFTP one
+#         'NAME': 'otijeuil_consolata_local',
+#         'USER': 'otijeuil_admin',
+#         'PASSWORD': 'WTL_T3p=jcEAPnjQ',
 #         'HOST': 'localhost',
 #         'PORT': '3306',
-#         # 'OPTIONS': {
-#         #     # 'charset': 'utf8mb4',
-#         # },
 #     }
 # }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'otijeuil_consolata_local',
-        'USER': 'otijeuil_admin',
-        'PASSWORD': 'WTL_T3p=jcEAPnjQ',
+        'NAME': 'consolata_local',
+        'USER': 'dommy',
+        'PASSWORD': 'dommy123',
         'HOST': 'localhost',
         'PORT': '3306',
     }
 }
-
 
 
 
@@ -136,15 +127,10 @@ AUTH_USER_MODEL = 'userauth.CustomUser'
 AUTHENTICATION_BACKENDS = ['userauth.backends.EmailBackend',
                             'django.contrib.auth.backends.ModelBackend',]
 # For testing: Emails print to console
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# for production
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your_email@example.com'
-# EMAIL_HOST_PASSWORD = 'your_email_password'
+# # for production
+
 
 
 
@@ -177,3 +163,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = env("EMAIL_BACKEND")
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_PORT = env.int("EMAIL_PORT")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
+EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
+
